@@ -1,0 +1,25 @@
+---
+import type { Project } from '../../data/types';
+import ProjectsTableRow from './ProjectsTableRow.astro';
+
+interface Props {
+  projects: Project[];
+}
+
+const { projects } = Astro.props;
+---
+
+<table class="w-full border-collapse">
+  <thead>
+    <tr>
+      <th class="text-left text-xs font-semibold uppercase tracking-widest text-[var(--text-secondary)] pb-4 pr-6">Year</th>
+      <th class="text-left text-xs font-semibold uppercase tracking-widest text-[var(--text-secondary)] pb-4 pr-6">Project</th>
+      <th class="text-left text-xs font-semibold uppercase tracking-widest text-[var(--text-secondary)] pb-4 pr-6">Made at</th>
+      <th class="text-left text-xs font-semibold uppercase tracking-widest text-[var(--text-secondary)] pb-4 pr-6">Built with</th>
+      <th class="text-left text-xs font-semibold uppercase tracking-widest text-[var(--text-secondary)] pb-4">Link</th>
+    </tr>
+  </thead>
+  <tbody>
+    {projects.map((p) => <ProjectsTableRow project={p} />)}
+  </tbody>
+</table>

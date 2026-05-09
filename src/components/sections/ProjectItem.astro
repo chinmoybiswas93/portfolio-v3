@@ -1,0 +1,192 @@
+---
+import type { Project } from '../../data/types';
+import Tag from '../ui/Tag.astro';
+import ExternalLink from '../ui/ExternalLink.astro';
+
+interface Props {
+  project: Project;
+  index: number;
+}
+
+const { project, index } = Astro.props;
+
+const hasLinks = project.githubUrl || project.liveUrl;
+---
+
+<div
+  class="card group"
+  data-animate="slide-up"
+  style={`animation-delay: ${index * 80}ms`}
+>
+  <div class="inner">
+    <!-- Left column: thumbnail -->
+    <div class="thumb-col">
+      {project.imageUrl ? (
+        <img
+          src={project.imageUrl}
+          alt={project.title}
+          loading="lazy"
+          class="thumb-img"
+        />
+      ) : (
+        <div class="thumb-placeholder">↗</div>
+      )}
+    </div>
+
+    <!-- Right column: content -->
+    <div class="content-col">
+      <h3 class="title">
+        {project.liveUrl ? (
+          <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" class="title-link">
+            {project.title}
+            <span class="title-arrow">↗</span>
+          </a>
+        ) : (
+          project.title
+        )}
+      </h3>
+
+      <p class="description">{project.description}</p>
+
+      <div class="tags">
+        {project.technologies.map((tech) => <Tag label={tech} />)}
+      </div>
+
+      {hasLinks && (
+        <div class="links">
+          {project.githubUrl && (
+            <ExternalLink href={project.githubUrl} label="GitHub repo">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+              </svg>
+              GitHub
+            </ExternalLink>
+          )}
+          {project.liveUrl && (
+            <ExternalLink href={project.liveUrl} label="Live site">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="10" />
+                <line x1="2" y1="12" x2="22" y2="12" />
+                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+              </svg>
+              Live
+            </ExternalLink>
+          )}
+        </div>
+      )}
+    </div>
+  </div>
+</div>
+
+<style>
+  .card {
+    position: relative;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    background: transparent;
+    border: 1px solid transparent;
+    transition: all 200ms ease;
+  }
+
+  .card:hover {
+    background: var(--bg-surface-hover);
+    border-color: var(--border-hover);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  }
+
+  .inner {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: 1.5rem;
+    align-items: start;
+  }
+
+  @media (max-width: 767px) {
+    .inner {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .thumb-col {
+    flex-shrink: 0;
+  }
+
+  .thumb-img {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    border-radius: 0.25rem;
+    border: 1px solid var(--border);
+    transition: border-color 200ms ease;
+    display: block;
+  }
+
+  .card:hover .thumb-img {
+    border-color: var(--border-hover);
+  }
+
+  .thumb-placeholder {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: 0.25rem;
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+    font-size: 1rem;
+  }
+
+  .title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-heading);
+    margin: 0;
+    line-height: 1.25;
+  }
+
+  .title-link {
+    color: var(--text-heading);
+    text-decoration: none;
+    transition: color 150ms ease;
+  }
+
+  .title-link:hover {
+    color: var(--accent);
+  }
+
+  .title-arrow {
+    display: inline-block;
+    margin-left: 0.25rem;
+    font-size: 0.875rem;
+    color: var(--accent);
+    opacity: 0;
+    transition: opacity 150ms ease;
+  }
+
+  .card:hover .title-arrow {
+    opacity: 1;
+  }
+
+  .description {
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+    line-height: 1.6;
+    margin: 0.375rem 0 0;
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.375rem;
+    margin-top: 0.75rem;
+  }
+
+  .links {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 0.75rem;
+  }
+</style>

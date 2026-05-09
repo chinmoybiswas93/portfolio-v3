@@ -3,7 +3,11 @@ import BaseLayout from '../components/layout/BaseLayout.astro';
 import TwoColumnLayout from '../components/layout/TwoColumnLayout.astro';
 import LeftSidebar from '../components/sidebar/LeftSidebar.astro';
 import AboutSection from '../components/sections/AboutSection.astro';
+import ExperienceSection from '../components/sections/ExperienceSection.astro';
+import ProjectsSection from '../components/sections/ProjectsSection.astro';
 import profile from '../data/profile';
+import experience from '../data/experience';
+import projects from '../data/projects';
 ---
 
 <BaseLayout title={profile.name} description={profile.tagline}>
@@ -20,5 +24,7 @@ import profile from '../data/profile';
       resumeUrl={profile.resumeUrl}
     />
     <AboutSection slot="content" about={profile.about} />
+    <ExperienceSection slot="content" experience={experience} resumeUrl={profile.resumeUrl} />
+    <ProjectsSection slot="content" projects={projects} />
   </TwoColumnLayout>
 </BaseLayout>

@@ -4,13 +4,57 @@ Update this file after every meaningful implementation change.
 
 ## Current Phase
 
-Phase 2 — Two-Column Shell (not started)
+Phase 8 — Spotlight Effect (not started)
 
 ## Current Goal
 
-Build `TwoColumnLayout.astro`, `LeftSidebar.astro`, and `SocialLinks.astro`. Implement two-column desktop layout with single-column mobile collapse.
+Build `src/scripts/spotlight.ts`, desktop-only guard.
 
 ## Completed
+
+### Phase 7 — Projects Archive Page ✓
+- Created `ProjectsTableRow.astro` — `<tr>` with Year, Project (link + ↗), Made at, Built with (Tag pills), Link (GitHub SVG icon) columns; row hover uses `var(--bg-surface)`
+- Created `ProjectsTable.astro` — `<table>` with styled `<thead>` (uppercase, tracking-widest, `--text-secondary`), maps rows via `ProjectsTableRow`
+- Created `ProjectCardMobile.astro` — `<li>` card with title link (liveUrl fallback githubUrl), Tag pills, year badge; plain text if no URL
+- Created `src/pages/projects.astro` — `/projects` route; sorts all 6 projects by year desc; desktop table / mobile list toggle via `hidden md:block` / `md:hidden`; "← Chinmoy Biswas" back link; uses `BaseLayout`
+- `npm run build` passes with zero errors; `/projects/index.html` exists in `dist/`
+
+### Phase 6 — Sidebar Nav Active State ✓
+- Created `SidebarNav.astro` — `data-nav-link` attributes, growing-line indicator (`2rem` → `4rem`), `--accent` color on active/hover, uppercase small labels, hidden on mobile (`hidden lg:block`)
+- Updated `LeftSidebar.astro` — replaced placeholder `<nav>` block with `<SidebarNav />`, removed old nav styles
+- Created `src/scripts/observer.ts` — `IntersectionObserver` for active section tracking (`-30% 0px -60% 0px` rootMargin) + entrance animation observer infrastructure for Phase 09
+- Updated `BaseLayout.astro` — loads `observer.ts` via `<script>` with relative import path at end of `<body>`
+- `npm run build` passes with zero errors
+
+### Phase 5 — Projects Section ✓
+- Created `ExternalLink.astro` — styled `<a>` with slot, `--text-secondary` color, hover `--text-primary`, inline-flex, gap, transition 150ms
+- Created `ProjectItem.astro` — two-column grid (100px thumbnail / 1fr content), card hover state matching ExperienceItem, title link with lazy `↗` on card hover, description, Tag pills, GitHub + Live `ExternalLink` rows
+- Created `ProjectsSection.astro` — filters `featured: true`, slices to 5, "View All Projects ↗" link styled identically to `resume-link`
+- Updated `index.astro` — imported `ProjectsSection` + `projects`, rendered after `ExperienceSection`
+- M-Smart Technology BD correctly excluded (featured: false); CB Portfolio and CB QR Code show both GitHub and Live links
+- `npm run build` passes with zero errors
+
+### Phase 4 — Experience Section ✓
+- Created `Tag.astro` — pill badge with `--accent-dim` bg, `--accent-dim-text` text, 9999px border-radius
+- Created `ExperienceItem.astro` — two-column grid (25%/1fr), PRESENT badge for current role, company link with `↗` arrow on hover, skills row, card hover state
+- Created `ExperienceSection.astro` — section wrapper with `id="experience"`, maps all 4 entries, "View Full Resume" link
+- Updated `index.astro` — added `ExperienceSection` after `AboutSection`, imported `experience` data
+- `npm run build` passes with zero errors
+
+### Phase 3 — About Section ✓
+- Created `AboutSection.astro` — `id="about"`, `set:html={about}`, scoped styles for links/bold/body text
+- Updated `TwoColumnLayout.astro` right column padding to `px-6 py-16 lg:px-16 lg:py-24` per spec
+- `index.astro` already wired with `<AboutSection about={profile.about} />`
+- `npm run build` passes with zero errors
+
+### Phase 2 — Two-Column Shell ✓
+- Created `TwoColumnLayout.astro` — `max-w-[1200px]`, `45%` sticky sidebar, scrollable right pane, `#spotlight-overlay` div
+- Created `LeftSidebar.astro` — name/title/tagline with correct font sizes, nav with indicator spans, resume link
+- Created `SocialLinks.astro` — GitHub, LinkedIn, Twitter (conditional), Email icons with exact SVG paths and hover transitions
+- Updated `src/pages/index.astro` — wired `TwoColumnLayout` + `LeftSidebar` + `AboutSection`
+- Fixed: profile block mobile margin-bottom (`1.5rem` mobile / `3rem` desktop)
+- Fixed: job title color corrected to `--text-primary`
+- `npm run build` passes with zero errors
 
 ### Phase 1 — Foundation ✓
 - Installed `tailwindcss` + `@tailwindcss/vite` (Tailwind CSS 4 Vite-native approach)
@@ -38,25 +82,6 @@ Build `TwoColumnLayout.astro`, `LeftSidebar.astro`, and `SocialLinks.astro`. Imp
 - None yet
 
 ## Next Up
-
-### Phase 2 — Two-Column Shell
-- `TwoColumnLayout.astro`, `LeftSidebar.astro`, `SocialLinks.astro`
-- Two-column desktop layout, single-column mobile collapse
-
-### Phase 3 — About Section
-- `AboutSection.astro` wired to `profile.about`
-
-### Phase 4 — Experience Section
-- `ExperienceSection.astro`, `ExperienceItem.astro`, `Tag.astro`
-
-### Phase 5 — Projects Section
-- `ProjectsSection.astro`, `ProjectItem.astro`, featured filter
-
-### Phase 6 — Sidebar Nav Active State
-- `SidebarNav.astro`, `src/scripts/observer.ts` (Intersection Observer)
-
-### Phase 7 — Projects Archive Page
-- `src/pages/projects.astro`, `ProjectsTable.astro`, `ProjectCard.astro`
 
 ### Phase 8 — Spotlight Effect
 - `src/scripts/spotlight.ts`, desktop-only guard

@@ -1,0 +1,46 @@
+---
+import type { Experience } from '../../data/types';
+import ExperienceItem from './ExperienceItem.astro';
+
+interface Props {
+  experience: Experience[];
+  resumeUrl?: string;
+}
+
+const { experience, resumeUrl } = Astro.props;
+---
+
+<section id="experience" class="mb-16 scroll-mt-24">
+  <h2 class="section-label lg:hidden">Experience</h2>
+  <div class="flex flex-col gap-4">
+    {experience.map((exp, i) => <ExperienceItem experience={exp} index={i} />)}
+  </div>
+  {resumeUrl && (
+    <div class="mt-8">
+      <a
+        href={resumeUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="resume-link"
+      >
+        View Full Resume ↗
+      </a>
+    </div>
+  )}
+</section>
+
+<style>
+  .resume-link {
+    color: var(--text-primary);
+    font-weight: 600;
+    font-size: 0.9375rem;
+    text-decoration: underline;
+    text-decoration-color: var(--accent);
+    text-underline-offset: 3px;
+    transition: color 150ms ease;
+  }
+
+  .resume-link:hover {
+    color: var(--accent);
+  }
+</style>

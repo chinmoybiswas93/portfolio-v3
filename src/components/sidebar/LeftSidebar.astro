@@ -1,5 +1,6 @@
 ---
 import SocialLinks from './SocialLinks.astro';
+import SidebarNav from './SidebarNav.astro';
 
 interface Props {
   name: string;
@@ -16,34 +17,13 @@ const { name, title, tagline, github, linkedin, twitter, email, resumeUrl } = As
 ---
 
 <aside class="flex flex-col h-full px-8 py-14 lg:py-24">
-  <div>
+  <div class="mb-6 lg:mb-12">
     <h1 class="name">{name}</h1>
     <p class="job-title">{title}</p>
     <p class="tagline">{tagline}</p>
   </div>
 
-  <nav class="mt-12 mb-12" aria-label="Page sections">
-    <ul class="flex flex-col gap-4">
-      <li>
-        <a href="#about" class="nav-link">
-          <span class="nav-indicator" aria-hidden="true"></span>
-          About
-        </a>
-      </li>
-      <li>
-        <a href="#experience" class="nav-link">
-          <span class="nav-indicator" aria-hidden="true"></span>
-          Experience
-        </a>
-      </li>
-      <li>
-        <a href="#projects" class="nav-link">
-          <span class="nav-indicator" aria-hidden="true"></span>
-          Projects
-        </a>
-      </li>
-    </ul>
-  </nav>
+  <SidebarNav />
 
   <div class="flex-1"></div>
 
@@ -73,7 +53,7 @@ const { name, title, tagline, github, linkedin, twitter, email, resumeUrl } = As
   .job-title {
     font-size: 18px;
     font-weight: 500;
-    color: var(--text-secondary);
+    color: var(--text-primary);
     margin: 0 0 1.5rem;
   }
 
@@ -88,48 +68,6 @@ const { name, title, tagline, github, linkedin, twitter, email, resumeUrl } = As
     margin: 0;
     max-width: 80%;
     line-height: 1.6;
-  }
-
-  .nav-link {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    color: var(--text-secondary);
-    text-transform: uppercase;
-    font-size: 0.75rem;
-    letter-spacing: 0.02em;
-    font-weight: 500;
-    text-decoration: none;
-    transition: color 300ms ease;
-  }
-
-  .nav-link:hover {
-    color: var(--text-primary);
-  }
-
-  .nav-link.active {
-    color: var(--text-primary);
-    font-weight: 700;
-  }
-
-  /* Horizontal growing line — matches original ::before pattern */
-  .nav-indicator {
-    display: block;
-    width: 40px;
-    height: 1px;
-    background-color: var(--text-secondary);
-    flex-shrink: 0;
-    transition: width 300ms ease, background-color 300ms ease;
-  }
-
-  .nav-link:hover .nav-indicator {
-    width: 60px;
-    background-color: var(--text-primary);
-  }
-
-  .nav-link.active .nav-indicator {
-    width: 80px;
-    background-color: var(--text-primary);
   }
 
   .resume-link {

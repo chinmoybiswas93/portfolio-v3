@@ -1,0 +1,45 @@
+---
+import BaseLayout from '../components/layout/BaseLayout.astro';
+import ProjectsTable from '../components/projects/ProjectsTable.astro';
+import ProjectCardMobile from '../components/projects/ProjectCardMobile.astro';
+import projects from '../data/projects';
+import profile from '../data/profile';
+
+const sorted = [...projects].sort((a, b) => b.year - a.year);
+---
+
+<BaseLayout title={`All Projects — ${profile.name}`} description="Full archive of projects by Chinmoy Biswas">
+  <div class="max-w-4xl mx-auto px-6 py-16 lg:px-12 lg:py-24">
+
+    <a href="/" class="back-link">← {profile.name}</a>
+
+    <h1 class="mt-6 mb-12 text-4xl font-bold text-[var(--text-heading)]">
+      All Projects
+    </h1>
+
+    <div class="hidden md:block">
+      <ProjectsTable projects={sorted} />
+    </div>
+
+    <ul class="md:hidden">
+      {sorted.map((p) => <ProjectCardMobile project={p} />)}
+    </ul>
+
+  </div>
+</BaseLayout>
+
+<style>
+  .back-link {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    transition: color 150ms ease;
+  }
+
+  .back-link:hover {
+    color: var(--accent);
+  }
+</style>

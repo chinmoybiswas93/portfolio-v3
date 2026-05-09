@@ -1,0 +1,64 @@
+---
+---
+
+<nav class="hidden lg:block mt-12" aria-label="Page sections">
+  <ul class="flex flex-col gap-4">
+    <li>
+      <a href="#about" data-nav-link="about" class="nav-link">
+        <span class="nav-indicator" aria-hidden="true"></span>
+        <span class="nav-label">About</span>
+      </a>
+    </li>
+    <li>
+      <a href="#experience" data-nav-link="experience" class="nav-link">
+        <span class="nav-indicator" aria-hidden="true"></span>
+        <span class="nav-label">Experience</span>
+      </a>
+    </li>
+    <li>
+      <a href="#projects" data-nav-link="projects" class="nav-link">
+        <span class="nav-indicator" aria-hidden="true"></span>
+        <span class="nav-label">Projects</span>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<style>
+  .nav-link {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.375rem 0;
+    text-decoration: none;
+    transition: all 150ms ease;
+    color: var(--text-secondary);
+  }
+  .nav-link:hover {
+    color: var(--text-primary);
+  }
+  .nav-link.active {
+    color: var(--text-heading);
+  }
+  .nav-indicator {
+    display: block;
+    height: 1px;
+    width: 2rem;
+    background: currentColor;
+    opacity: 0.4;
+    transition: width 200ms ease, opacity 200ms ease;
+    flex-shrink: 0;
+  }
+  .nav-link.active .nav-indicator,
+  .nav-link:hover .nav-indicator {
+    width: 4rem;
+    opacity: 1;
+    background: var(--accent);
+  }
+  .nav-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+</style>

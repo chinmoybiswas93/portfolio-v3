@@ -1,0 +1,157 @@
+---
+import type { Experience } from '../../data/types';
+import Tag from '../ui/Tag.astro';
+
+interface Props {
+  experience: Experience;
+  index: number;
+}
+
+const { experience, index } = Astro.props;
+---
+
+<div
+  class="card group"
+  data-animate="slide-up"
+  style={`animation-delay: ${index * 80}ms`}
+>
+  <div class="inner">
+    <!-- Left column: date range -->
+    <div class="date-col">
+      <span class="date-range">
+        {experience.startDate} –
+        {experience.current
+          ? <span class="badge-present">PRESENT</span>
+          : experience.endDate}
+      </span>
+    </div>
+
+    <!-- Right column: details -->
+    <div class="details-col">
+      <h3 class="position">{experience.position}</h3>
+
+      {experience.companyUrl ? (
+        <a
+          href={experience.companyUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="company-link"
+        >
+          {experience.company}<span class="arrow">↗</span>
+        </a>
+      ) : (
+        <span class="company-name">{experience.company}</span>
+      )}
+
+      <p class="description">{experience.description}</p>
+
+      <div class="tags">
+        {experience.skills.map((skill) => <Tag label={skill} />)}
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .card {
+    position: relative;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    background: transparent;
+    border: 1px solid transparent;
+    transition: all 200ms ease;
+  }
+
+  .card:hover {
+    background: var(--bg-surface-hover);
+    border-color: var(--border-hover);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  }
+
+  .inner {
+    display: grid;
+    grid-template-columns: 25% 1fr;
+    gap: 1rem;
+  }
+
+  @media (max-width: 767px) {
+    .inner {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .date-col {
+    padding-top: 0.2rem;
+  }
+
+  .date-range {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-variant-numeric: tabular-nums;
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    flex-wrap: wrap;
+  }
+
+  .badge-present {
+    background: var(--badge-present-bg);
+    color: var(--badge-present-text);
+    font-size: 0.65rem;
+    font-weight: 600;
+    padding: 0.2rem 0.5rem;
+    border-radius: 9999px;
+    white-space: nowrap;
+  }
+
+  .position {
+    color: var(--text-heading);
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.25;
+    margin: 0 0 0.25rem;
+  }
+
+  .company-link {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.9375rem;
+    transition: color 150ms ease;
+  }
+
+  .company-link:hover {
+    color: var(--accent);
+  }
+
+  .company-name {
+    color: var(--text-secondary);
+    font-size: 0.9375rem;
+  }
+
+  .arrow {
+    opacity: 0;
+    transition: opacity 150ms ease;
+    margin-left: 0.125rem;
+    font-size: 0.75rem;
+  }
+
+  .company-link:hover .arrow {
+    opacity: 1;
+  }
+
+  .description {
+    color: var(--text-secondary);
+    font-size: 0.9375rem;
+    line-height: 1.7;
+    margin: 0.5rem 0 0;
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.75rem;
+  }
+</style>
