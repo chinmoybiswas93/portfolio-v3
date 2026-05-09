@@ -1,0 +1,34 @@
+---
+interface Props {
+  about: string;
+}
+
+const { about } = Astro.props;
+---
+
+<section id="about" class="mb-16 scroll-mt-24">
+  <h2 class="text-xs font-semibold tracking-widest uppercase text-[var(--text-secondary)] mb-6 lg:hidden">About</h2>
+  <div class="about-body" set:html={about} />
+</section>
+
+<style>
+  .about-body {
+    color: var(--text-secondary);
+    font-size: 0.9375rem;
+    line-height: 1.75;
+  }
+  .about-body a {
+    color: var(--text-primary);
+    text-decoration-color: var(--accent);
+    text-underline-offset: 3px;
+    transition: color 150ms ease;
+  }
+  .about-body a:hover {
+    color: var(--accent);
+  }
+  .about-body strong,
+  .about-body b {
+    color: var(--text-primary);
+    font-weight: 600;
+  }
+</style>

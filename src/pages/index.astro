@@ -2,6 +2,7 @@
 import BaseLayout from '../components/layout/BaseLayout.astro';
 import TwoColumnLayout from '../components/layout/TwoColumnLayout.astro';
 import LeftSidebar from '../components/sidebar/LeftSidebar.astro';
+import AboutSection from '../components/sections/AboutSection.astro';
 import profile from '../data/profile';
 ---
 
@@ -18,8 +19,6 @@ import profile from '../data/profile';
       email={profile.email}
       resumeUrl={profile.resumeUrl}
     />
-    <div slot="content" class="py-24 px-8 text-[var(--text-secondary)]">
-      Content coming in Phase 03–05
-    </div>
+    <AboutSection slot="content" about={profile.about} />
   </TwoColumnLayout>
 </BaseLayout>
