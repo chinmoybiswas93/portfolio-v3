@@ -1,17 +1,25 @@
 ---
-
+import BaseLayout from '../components/layout/BaseLayout.astro';
+import TwoColumnLayout from '../components/layout/TwoColumnLayout.astro';
+import LeftSidebar from '../components/sidebar/LeftSidebar.astro';
+import profile from '../data/profile';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout title={profile.name} description={profile.tagline}>
+  <TwoColumnLayout>
+    <LeftSidebar
+      slot="sidebar"
+      name={profile.name}
+      title={profile.title}
+      tagline={profile.tagline}
+      github={profile.github}
+      linkedin={profile.linkedin}
+      twitter={profile.twitter}
+      email={profile.email}
+      resumeUrl={profile.resumeUrl}
+    />
+    <div slot="content" class="py-24 px-8 text-[var(--text-secondary)]">
+      Content coming in Phase 03–05
+    </div>
+  </TwoColumnLayout>
+</BaseLayout>

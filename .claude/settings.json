@@ -5,7 +5,15 @@
       "Bash(curl -sL \"https://chinmoybiswas.com/wp-content/uploads/2026/03/Sylhet-Helpline.webp\" -o sylhet-helpline.webp)",
       "Bash(curl -sL \"https://chinmoybiswas.com/wp-content/uploads/2026/03/Cardinal-Health-Care-BD-Part-of-the-Genoss-family-A-trusted-technology-partner-03-20-2026_12_43_AM.webp\" -o cardinal-health-care.webp)",
       "Bash(curl -sL \"https://chinmoybiswas.com/wp-content/uploads/2026/03/Chinmoy-Biswas-Wordpress-Developer-_-Tech-Support.webp\" -o cb-portfolio.webp)",
-      "Bash(curl -sL \"https://chinmoybiswas.com/wp-content/uploads/2026/03/CB-QR-Code-%E2%80%93-WordPress-plugin-_-WordPress.org_.webp\" -o cb-qr-code.webp)"
+      "Bash(curl -sL \"https://chinmoybiswas.com/wp-content/uploads/2026/03/CB-QR-Code-%E2%80%93-WordPress-plugin-_-WordPress.org_.webp\" -o cb-qr-code.webp)",
+      "Bash(git status *)",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(git push *)",
+      "mcp__context7__resolve-library-id",
+      "mcp__context7__query-docs",
+      "Bash(npm install *)",
+      "Bash(npm run *)"
     ]
   }
 }

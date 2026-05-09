@@ -4,14 +4,23 @@ Update this file after every meaningful implementation change.
 
 ## Current Phase
 
-Phase 1 — Foundation (not started)
+Phase 2 — Two-Column Shell (not started)
 
 ## Current Goal
 
-Install Tailwind CSS, set up CSS custom properties in `global.css`, write all TypeScript data files with real portfolio content, and create `BaseLayout.astro`.
+Build `TwoColumnLayout.astro`, `LeftSidebar.astro`, and `SocialLinks.astro`. Implement two-column desktop layout with single-column mobile collapse.
 
 ## Completed
 
+### Phase 1 — Foundation ✓
+- Installed `tailwindcss` + `@tailwindcss/vite` (Tailwind CSS 4 Vite-native approach)
+- Updated `astro.config.mjs` with `@tailwindcss/vite` Vite plugin
+- Created `src/styles/global.css` with all CSS custom property tokens + base resets + animation initial states
+- Created `src/components/layout/BaseLayout.astro` with Inter font loading and `<slot />`
+- Updated `src/pages/index.astro` to use `BaseLayout`
+- `npm run build` passes with zero errors
+
+### Setup (pre-Phase 1)
 - Context files written: `project-overview.md`, `architecture.md`, `ui-context.md`, `code-standards.md`, `ai-workflow-rules.md`
 - Astro 6 project initialized (blank starter at `/Users/chinmoy/projects/portfolio`)
 - Source design analyzed: https://chinmoybiswas.com (Vue SPA via WordPress plugin `cb-portfolio`)
@@ -29,14 +38,6 @@ Install Tailwind CSS, set up CSS custom properties in `global.css`, write all Ty
 - None yet
 
 ## Next Up
-
-### Phase 1 — Foundation (remaining steps)
-1. `npm install` Tailwind CSS 4 + `@astrojs/tailwind` integration
-2. Update `astro.config.mjs` to add Tailwind integration
-3. Create `src/styles/global.css` with all CSS custom property tokens from `ui-context.md`
-4. Create `src/components/layout/BaseLayout.astro` (html shell, Inter font loading, global styles)
-5. Update `src/pages/index.astro` to use `BaseLayout`
-6. Run `npm run build` to verify zero errors
 
 ### Phase 2 — Two-Column Shell
 - `TwoColumnLayout.astro`, `LeftSidebar.astro`, `SocialLinks.astro`

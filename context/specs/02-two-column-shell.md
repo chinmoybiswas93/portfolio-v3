@@ -7,7 +7,7 @@ Build the page layout skeleton: a sticky left sidebar and a scrollable right con
 ## Read first
 
 - `context/ui-context.md` — Layout section (desktop/tablet/mobile breakpoints, sidebar width, right content padding), Social Links icon sizes, color tokens for sidebar bg and border
-- `context/architecture.md` — directory structure for `sidebar/` components, data flow rule (pages import data, not components)
+- `context/architecture.md` — directory strxqucture for `sidebar/` components, data flow rule (pages import data, not components)
 - `src/data/profile.ts` — available fields: name, title, tagline, github, linkedin, twitter, resumeUrl
 
 ## Files changed
