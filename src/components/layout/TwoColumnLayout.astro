@@ -1,14 +1,14 @@
 ---
 ---
 
-<div class="relative flex min-h-screen max-w-screen-xl mx-auto">
+<div class="relative flex min-h-screen max-w-[1200px] mx-auto px-8">
   <div id="spotlight-overlay" class="fixed inset-0 pointer-events-none z-0"></div>
 
-  <div class="lg:sticky lg:top-0 lg:h-screen lg:w-[45%] lg:max-w-[600px] lg:overflow-y-auto lg:flex-shrink-0">
+  <div class="lg:sticky lg:top-0 lg:h-screen lg:w-[45%] lg:overflow-y-auto lg:flex-shrink-0">
     <slot name="sidebar" />
   </div>
 
-  <div class="flex-1 min-w-0 scrollable">
+  <div class="flex-1 min-w-0 scrollable px-8 py-10 lg:py-24">
     <slot name="content" />
   </div>
 </div>
