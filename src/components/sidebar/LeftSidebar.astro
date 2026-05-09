@@ -61,7 +61,7 @@ const { name, title, tagline, github, linkedin, twitter, email, resumeUrl } = As
   .name {
     font-size: 42px;
     font-weight: 700;
-    color: var(--text-heading);
+    color: var(--text-primary);
     line-height: 1;
     margin: 0 0 0.5rem;
   }
@@ -72,8 +72,8 @@ const { name, title, tagline, github, linkedin, twitter, email, resumeUrl } = As
 
   .job-title {
     font-size: 18px;
-    font-weight: 500;
-    color: var(--text-primary);
+    font-weight: 400;
+    color: var(--text-secondary);
     margin: 0 0 1.5rem;
   }
 
@@ -83,9 +83,11 @@ const { name, title, tagline, github, linkedin, twitter, email, resumeUrl } = As
 
   .tagline {
     font-size: 1rem;
+    font-weight: 300;
     color: var(--text-secondary);
     margin: 0;
     max-width: 80%;
+    line-height: 1.6;
   }
 
   .nav-link {
@@ -96,27 +98,38 @@ const { name, title, tagline, github, linkedin, twitter, email, resumeUrl } = As
     text-transform: uppercase;
     font-size: 0.75rem;
     letter-spacing: 0.02em;
-    font-weight: 600;
-    transition: color 150ms ease;
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 300ms ease;
   }
 
   .nav-link:hover {
     color: var(--text-primary);
   }
 
-  .nav-indicator {
-    display: block;
-    width: 3px;
-    height: 1rem;
-    background-color: var(--accent);
-    border-radius: 1px;
-    opacity: 0;
-    transition: opacity 150ms ease;
+  .nav-link.active {
+    color: var(--text-primary);
+    font-weight: 700;
   }
 
-  .nav-link:hover .nav-indicator,
-  .nav-link[aria-current="true"] .nav-indicator {
-    opacity: 1;
+  /* Horizontal growing line — matches original ::before pattern */
+  .nav-indicator {
+    display: block;
+    width: 40px;
+    height: 1px;
+    background-color: var(--text-secondary);
+    flex-shrink: 0;
+    transition: width 300ms ease, background-color 300ms ease;
+  }
+
+  .nav-link:hover .nav-indicator {
+    width: 60px;
+    background-color: var(--text-primary);
+  }
+
+  .nav-link.active .nav-indicator {
+    width: 80px;
+    background-color: var(--text-primary);
   }
 
   .resume-link {
